@@ -4,6 +4,9 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { DataSourceConfig } from './utils/config/data.source';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { JwtModule } from '@nestjs/jwt';
+import { RedisModule } from './redis/redis.module';
+import { FirebaseStorageModule } from './firebase-storage/firebase-storage.module';
 
 @Module({
   imports: [
@@ -14,6 +17,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TypeOrmModule.forRoot(DataSourceConfig),
     AuthModule,
     UsersModule,
+    JwtModule,
+    RedisModule,
+    FirebaseStorageModule,
   ],
 })
 export class AppModule {}

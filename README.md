@@ -24,7 +24,12 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Plantilla donde se expone la conexion entre modulos:
+
+- AuthModule: Autenticacion de los usuarios.
+- UsersModule -
+- RedisModule - Almacenar datos.
+- FirebaseModule - Conexion con Firebase API. Ejemplo: Cargar archivos
 
 ## Installation
 

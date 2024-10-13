@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EntityUser } from './entities/user.entity';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -15,19 +15,25 @@ export class UsersService {
     return await this.repositoryUser.save(createUserDto);
   }
 
-  // findAll() {
-  //   return `This action returns all users`;
-  // }
-
-  findOneByUsername(username: string) {
-    return this.repositoryUser.findOne({ where: { username } });
+  async findOneByUsername(username: string) {
+    return await this.repositoryUser.findOne({ where: { username } });
   }
 
-  // update(id: number, updateUserDto: UpdateUserDto) {
-  //   return `This action updates a #${id} user`;
-  // }
+  async findOneByID(id: string) {
+    return await this.repositoryUser.findOne({ where: { id } });
+  }
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} user`;
-  // }
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    // Encuentra el usuario por su id
+    const user = await this.findOneByID(id);
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+    // Aplica los cambios al objeto de usuario cargado
+    Object.assign(user, updateUserDto);
+
+    // Guarda el usuario actualizado
+    return await this.repositoryUser.save(user);
+  }
 }

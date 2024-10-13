@@ -32,3 +32,11 @@ export class CreateAuthUserDto {
   @ApiProperty({ example: 'kamil123', description: 'User password' })
   password: string;
 }
+
+export class changeUserTokenDto {
+  @ApiProperty({ example: 'kamil', description: 'User username' })
+  username: string;
+
+  @ApiProperty()
+  token: string;
+}
